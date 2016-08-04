@@ -21,7 +21,6 @@ def IBSmodel(IBSON, gamma, bunch_intensity_p,ex_norm_m,ey_norm_m,bl_4sigma_s,VRF
     
         #print 'Energy', En
         if fabs(En-6500)<ene_tol_GeV:
-            tauxy=64.6*60
             
             if V0==12:
                 a00=5.8128e-06*t**1.9244;
@@ -84,7 +83,6 @@ def IBSmodel(IBSON, gamma, bunch_intensity_p,ex_norm_m,ey_norm_m,bl_4sigma_s,VRF
                 b21=4.6533e-07*t**2+-1.3315e-05*t+7.2448e-05;
             
         elif abs(En-7000)<ene_tol_GeV:
-            tauxy=51.79833076*60;
 
             a00=5.1987e-06*t**1.9415;
             a01=0.018282*t**0.83002-4.2914;
@@ -111,7 +109,6 @@ def IBSmodel(IBSON, gamma, bunch_intensity_p,ex_norm_m,ey_norm_m,bl_4sigma_s,VRF
             b12l=3.0086e-07*t**2-0.0014477*t+0.44358;
             
         elif abs(En-3500)<ene_tol_GeV:
-            tauxy=414.3866126*60;
 
             a00=1.2913e-05*t**1.8328;
             a01=8.7273*t**0.036932-13.7139;
@@ -145,7 +142,7 @@ def IBSmodel(IBSON, gamma, bunch_intensity_p,ex_norm_m,ey_norm_m,bl_4sigma_s,VRF
         C0l=a1l*Nb+a0l;
         ccSRl=b0l*Nb+b1l;
 
-        ey=ey0*exp(-t/(2*tauxy));
+        ey=ey0
 
         IBSl=C0l*bl0**-3.3+ccSRl;
         bl=IBSl*bl0;
