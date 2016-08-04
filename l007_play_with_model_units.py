@@ -13,19 +13,12 @@ tFill_s  = 20*3600.
 
 VRF_V = 12e6
 
-tauSRxy_s = 64.7*3600; 
-tauSRl_s = 32.35*3600; 
+tauSRxy_s = np.inf #64.7*3600; 
+tauSRl_s = np.inf  #32.35*3600; 
 
 sigmaBOff_m2 = 110*1e-31;
 
 N_bunches = 2064
-
-#~ LumiModel(gamma=gamma, betastar_m=betastar_m, phi_full_rad=full_Xing_angle, bunch_intensityin_p=bunch_intensity, 
-                #~ exin_norm_m=n_emittx_init_m, eyin_norm_m=n_emitty_init_m, 
-                #~ blin_4sigma_s=bunch_length_init_ns, tFill_s=tFill_s,
-                #~ tauh_s=None, tauv_s=None, tauSRxy_s=tauSRxy_s, tauSRl_s=tauSRl_s, 
-                #~ sigmaBOff_m2=sigmaBOff_m2, VRF_V=VRF_V, 
-                #~ IBSON=1, emitBU="Model", BoffON=1, nIPs = 2., dt_s=15*60.)
                     
 tt_s, Luminosity_invm2s, bunch_intensity_p, ex_norm_m, ey_norm_m, bl_4sigma_s = LumiModel(gamma=gamma, betastar_m=betastar_m, phi_full_rad=full_Xing_angle, 
             bunch_intensityin_p=bunch_intensity, exin_norm_m=n_emittx_init_m, eyin_norm_m=n_emitty_init_m, 
@@ -69,5 +62,6 @@ pl.xlabel('Time [h]')
 pl.gca().ticklabel_format(style='sci', scilimits=(0,0),axis='y') 
 pl.grid()
 pl.legend(loc='best')
+pl.ylim(1.e-6, 3.e-6)
 
 pl.show()
