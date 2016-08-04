@@ -109,8 +109,46 @@ def IBSmodel(IBSON, gamma, bunch_intensity_p,ex_norm_m,ey_norm_m,bl_4sigma_s,VRF
             IBSx=ccSR+C0/ex0**2;
             ex=IBSx*ex0;
         
-        elif  fabs(En-450)<ene_tol_GeV:
-            raise ValueError('Injection not implemented yet')
+        elif fabs(En-450)<ene_tol_GeV:
+            if V0==6:
+
+                a00=0.012933*t**0.88618-0.00526;
+                a01=0.028053*t**0.71436-1.5575;
+                a10=-0.037088*t**0.5134+1.0428;
+                a11=0.11089*t**0.37031-0.12107;
+
+                a00l=0.013338*t**0.74914-0.010784;
+                a01l=0.04531*t**0.57845-1.2821;
+                a10l=-0.2069*t**0.27413+1.2344;
+                a11l=1.7934*t**0.041965-1.8371;
+
+                # a00=0.012965*t**0.87585-0.0050291;
+                # a01=0.013908*t**0.8844-1.5399;
+                # a10=-0.029045*t**0.58094+1.0322;
+                # a11=0.068627*t**0.47863-0.072803;
+
+                a0=a00*bl0**a01;
+                a1=a10*bl0**a11;
+
+                C0=a0*Nb**a1;
+
+                IBSx=1.+C0/ex0**2;
+                ex=IBSx*ex0;
+
+                a0l=a00l*ex0**a01l;
+                a1l=a10l*ex0**a11l;
+
+                C0l=a0l*Nb**a1l;
+
+                IBSl=1.+C0l/bl0**3;
+                bl=IBSl*bl0;
+                
+                ey=ey0
+                
+            else:
+                raise ValueError('Voltage not available!')    
+            
+            
             
         else:
             raise ValueError('Energy not available!')

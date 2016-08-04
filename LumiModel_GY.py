@@ -66,7 +66,7 @@ def LumiModel(gamma=None, betastar_m=None, phi_full_rad=None, bunch_intensityin_
             tauBOff_s = bunch_intensity_p[i_step-1]/(sigmaBOff_m2*nIPs*Luminosity_invm2s[i_step-1])
             bunch_intensity_p.append(bunch_intensity_p[i_step-1]/(1.+dt_s/tauBOff_s));        
         else:
-            Nb0.append(bunch_intensity_p[i_step-1]);
+            bunch_intensity_p.append(bunch_intensity_p[i_step-1]);
 
         Luminosity_invm2s.append(Lumi_inst(Number_bunches=1., bunch_intensity_p=bunch_intensity_p[i_step], 
                         ex_norm_m=ex_norm_m[i_step], ey_norm_m=ey_norm_m[i_step], bl_4sigma_s=bl_4sigma_s[i_step], 
