@@ -8,7 +8,7 @@ full_Xing_angle=2*185e-6
 bunch_intensity = 1.15e8
 n_emittx_init_m = 2.5e-6
 n_emitty_init_m = 2.e-6
-bunch_length_init_ns = 1e-9#4 sigma
+bunch_length_init_ns = 1e-9*100#4 sigma
 tFill_s  = 20*3600.
 
 VRF_V = 12e6

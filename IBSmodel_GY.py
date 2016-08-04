@@ -81,32 +81,42 @@ def IBSmodel(IBSON, gamma, bunch_intensity_p,ex_norm_m,ey_norm_m,bl_4sigma_s,VRF
                 b11=-0.0013357*t**1.5252+2.0487;
                 b20=-1.2699e-08*t**2+-0.00050988*t+0.99997;
                 b21=4.6533e-07*t**2+-1.3315e-05*t+7.2448e-05;
+            else:
+                raise ValueError('Voltage not available!')
+                
+            a0l=a00l*ex0**a01l+a02l;
+            a1l=a10l*ex0**a11l+a12l;
+            b0l=b00l*ex0**b01l+b02l;
+            b1l=b10l*ex0**b11l+b12l;
+
+            C0l=a1l*Nb+a0l;
+            ccSRl=b0l*Nb+b1l;
+
+            ey=ey0
+
+            IBSl=C0l*bl0**-3.3+ccSRl;
+            bl=IBSl*bl0;
+
+            a0=a00*bl0**a01;
+            a1=a10*bl0**a11;
+            b0=b00*bl0**b01;
+            b1=b10*bl0**b11;
+            b2=b20*bl0**b21;
+
+            C0=a1*Nb+a0;
+            ccSR=b0*Nb**2+b1*Nb+b2;
+
+            IBSx=ccSR+C0/ex0**2;
+            ex=IBSx*ex0;
+        
+        elif  fabs(En-450)<ene_tol_GeV:
+            raise ValueError('Injection not implemented yet')
+            
+        else:
+            raise ValueError('Energy not available!')
 
 
-        a0l=a00l*ex0**a01l+a02l;
-        a1l=a10l*ex0**a11l+a12l;
-        b0l=b00l*ex0**b01l+b02l;
-        b1l=b10l*ex0**b11l+b12l;
 
-        C0l=a1l*Nb+a0l;
-        ccSRl=b0l*Nb+b1l;
-
-        ey=ey0
-
-        IBSl=C0l*bl0**-3.3+ccSRl;
-        bl=IBSl*bl0;
-
-        a0=a00*bl0**a01;
-        a1=a10*bl0**a11;
-        b0=b00*bl0**b01;
-        b1=b10*bl0**b11;
-        b2=b20*bl0**b21;
-
-        C0=a1*Nb+a0;
-        ccSR=b0*Nb**2+b1*Nb+b2;
-
-        IBSx=ccSR+C0/ex0**2;
-        ex=IBSx*ex0;
         
         ex_out_norm_m = ex*1e-6
         ey_out_norm_m = ey*1e-6
