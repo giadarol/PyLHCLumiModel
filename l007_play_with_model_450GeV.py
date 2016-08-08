@@ -5,11 +5,11 @@ from LumiModel_GY import LumiModel
 gamma = 479.6 #450 GeV
 betastar_m = 11.
 full_Xing_angle=2*185e-6
-bunch_intensity = 1.15e11
+bunch_intensity = 1.1e11
 n_emittx_init_m = 1.6e-6
 n_emitty_init_m = 1.6e-6
 bunch_length_init_ns = 1e-9#4 sigma
-tFill_s  = 1*3600.
+tFill_s  = 0.5*3600.
 dt_s = 1*60.
 IBSON = 1
 emitBU="Model"

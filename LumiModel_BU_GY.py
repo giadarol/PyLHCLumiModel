@@ -27,7 +27,7 @@ def Lumi_inst(Number_bunches, bunch_intensity_p, ex_norm_m, ey_norm_m, bl_4sigma
 
 def LumiModel(gamma=None, betastar_m=None, phi_full_rad=None, bunch_intensityin_p=None, exin_norm_m=None, 
         eyin_norm_m=None, blin_4sigma_s=None, tFill_s=None,tauSRxy_s=None, tauSRl_s=None, sigmaBOff_m2=None, 
-        VRF_V=None, IBSON=1, emitBU="Model", BoffON=1, nIPs = 2., dt_s=15*60., tau_empirical_h=None, tau_empirical_v=None):
+        VRF_V=None, IBSON=1, emitBU=None, BoffON=1, nIPs = 2., dt_s=15*60.):
      
     ex_norm_m = [exin_norm_m]
     ey_norm_m = [eyin_norm_m]
@@ -44,6 +44,9 @@ def LumiModel(gamma=None, betastar_m=None, phi_full_rad=None, bunch_intensityin_
     tt_s = np.arange(0., tFill_s, dt_s)
     N_steps = len(tt_s)
     
+    tauh = 0
+    tauv = 0
+
     for i_step in xrange(1, N_steps):
         
         
@@ -54,11 +57,11 @@ def LumiModel(gamma=None, betastar_m=None, phi_full_rad=None, bunch_intensityin_
             ex_norm_m.append(ex_IBS_norm_m)
             ey_norm_m.append(ey_norm_m[i_step-1]*exp(-2*dt_s/tauSRxy_s));   
         elif emitBU=='EmpiricalBlowup':
-            ex_norm_m.append(ex_norm_m[i_step-1]+dt_s/tau_empirical_h)
-            ey_norm_m.append(ey_norm_m[i_step-1]+dt_s/tau_empirical_v);
-        else:
-            raise ValueError('Not understood!')
-
+                #raise ValueError('Not checked yet for units (Gianni&Yannis)')
+                #ex0.append(ex_norm_m[i-1]+tauh*dt)
+                #ey0.append(ey_norm_m[i-1]+tauv*dt);
+            ex_norm_m.append(ex_norm_m[i_step-1]+tauh*dt_s)
+            ey_norm_m.append(ey_norm_m[i_step-1]+tauv*dt_s);
 
         bl_4sigma_s.append(bl_IBS_4sigma_s)
 
