@@ -8,10 +8,10 @@ import mystyle as ms
 gamma = 6927.64 #6.5TeV
 betastar_m = .4
 
-bunch_intensity = 1.2e11
-n_emittx_init_m = 2.e-6
-n_emitty_init_m = 2.e-6
-bunch_length_init_ns = 1.2e-9#4 sigma
+bunch_intensity = 1.075e11
+n_emittx_init_m = 2.35e-6
+n_emitty_init_m = 1.8e-6
+bunch_length_init_ns = 1.15e-9#4 sigma
 tFill_s  = 20*3600.
 VRF_V = 12e6
 tauSRxy_s = 64.7*3600; 
@@ -20,14 +20,15 @@ sigmaBOff_m2 = 110*1e-31;
 emitBU="EmpiricalBlowup"
 tau_empirical_h = np.inf
 tau_empirical_v = np.inf
-time_t_around_h = 3.5#5.7
+time_t_around_h = 6 #3.5 #5.7
 
-N_bunches = 2064
+N_bunches = 2208
 
 fontsz =14
                     
                     
-full_Xing_angle_list = [2*185e-6, 2*145e-6]
+# full_Xing_angle_list = [2*185e-6, 2*142.5e-6]
+full_Xing_angle_list = [2*185e-6]
 color_list = ['b', 'g']
 
 na = np.array
@@ -107,13 +108,13 @@ for ii in xrange(len(full_Xing_angle_list)):
     splumi.grid('on')
 
     spinteg.plot(tt_s[:-1]/3600., na(integrated_luminosity_inv_fb)*N_bunches, linewidth=2.)
-    spinteg.set_ylabel('Integr. luminosity per week [fb^-1]')
+    spinteg.set_ylabel('Integr. luminosity [fb^-1]')
     spinteg.set_xlabel('Time [h]')
     spinteg.grid('on')
 
     spweek.plot(tt_s[:-1]/3600., L_week_full_beam, linewidth=2., 
     label='t_opt=%.1f, L_week_opt=%.1f'%(tt_s[i_max]/3600., L_week_full_beam[i_max]))
-    spweek.set_ylabel('Integr. luminosity [fb^-1]')
+    spweek.set_ylabel('Integr. luminosity per week [fb^-1]')
     spweek.set_xlabel('Time [h]')
     spweek.grid('on')
 
