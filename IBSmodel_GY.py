@@ -83,7 +83,63 @@ def IBSmodel(IBSON, gamma, bunch_intensity_p,ex_norm_m,ey_norm_m,bl_4sigma_s,VRF
                 b21=4.6533e-07*t**2+-1.3315e-05*t+7.2448e-05;
             else:
                 raise ValueError('Voltage not available!')
+
                 
+            a0l=a00l*ex0**a01l+a02l;
+            a1l=a10l*ex0**a11l+a12l;
+            b0l=b00l*ex0**b01l+b02l;
+            b1l=b10l*ex0**b11l+b12l;
+
+            C0l=a1l*Nb+a0l;
+            ccSRl=b0l*Nb+b1l;
+
+            ey=ey0
+
+            IBSl=C0l*bl0**-3.3+ccSRl;
+            bl=IBSl*bl0;
+
+            a0=a00*bl0**a01;
+            a1=a10*bl0**a11;
+            b0=b00*bl0**b01;
+            b1=b10*bl0**b11;
+            b2=b20*bl0**b21;
+
+            C0=a1*Nb+a0;
+            ccSR=b0*Nb**2+b1*Nb+b2;
+
+            IBSx=ccSR+C0/ex0**2;
+            ex=IBSx*ex0;
+
+        elif fabs(En-7000)<ene_tol_GeV:
+            
+            if V0!=16:
+                raise ValueError('Only 16 MV implemented')
+            
+            a00=5.1987e-06*t**1.9415;
+            a01=0.018282*t**0.83002-4.2914;
+            a10=0.0032374*t**0.93508;
+            a11=0.0062827*t**0.89334-1.6245;
+            b00=1.547e-07*t**1.9416+1.0489e-05;
+            b01=0.064587*t**0.70466-4.6279;
+            b10=1.3308e-07*t**2-5.3766e-05*t+4.998e-05;
+            b11=-0.00025467*t**1.7402+2.6232;
+            b20=-0.0006784*t**0.98408+1.0001;
+            b21=1.6052e-07*t**2-5.1973e-06*t+5.2314e-05;
+            
+            a00l=2.5149e-06*t**2+1.8552e-05*t-2.2517e-05;
+            a01l=-3.8476*t**0.09162+4.3565;
+            a02l=-9.5113e-08*t**2+1.6066e-05*t+2.0409e-05;
+            a10l=0.0011588*t**0.92637;
+            a11l=0.0060754*t**1.1078-1.3471;
+            a12l=-5.7847e-07*t**2.2954;
+            b00l=7.7172e-07*t**2+3.2533e-05*t-3.1935e-05;
+            b01l=0.00014293*t**2-0.01935*t-0.70398;
+            b02l=-8.7952e-09*t**2+1.8045e-06*t-1.6533e-05;
+            b10l=-2.7508e-07*t**2+0.00075061*t+0.55646;
+            b11l=2.6594e-07*t**2+7.1229e-06*t-6.3951e-05;
+            b12l=3.0086e-07*t**2-0.0014477*t+0.44358;
+            
+                     
             a0l=a00l*ex0**a01l+a02l;
             a1l=a10l*ex0**a11l+a12l;
             b0l=b00l*ex0**b01l+b02l;
@@ -151,6 +207,7 @@ def IBSmodel(IBSON, gamma, bunch_intensity_p,ex_norm_m,ey_norm_m,bl_4sigma_s,VRF
             
             
         else:
+            print 'Energy: ', En
             raise ValueError('Energy not available!')
 
 

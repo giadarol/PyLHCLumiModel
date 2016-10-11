@@ -6,6 +6,11 @@ import mystyle as ms
 
 
 gamma = 6927.64 #6.5TeV
+
+En = 7000. #6.5TeV
+E0=0.93828
+gamma = En/E0
+
 betastar_m = .4
 
 bunch_intensity = 1.075e11
